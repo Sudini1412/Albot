@@ -49,7 +49,7 @@ class DynamicLoad(commands.Cog):
                 return f"No such cog: `{cog_name}`"
             else:
                 self.logging.info(f"Loaded {cog_name}")
-                return f"Loaded new cof `{cog_name}`"
+                return f"Loaded new cog `{cog_name}`"
 
     def _fmt_cog_list(self, input_list: list) -> str:
         ret = "\n".join(f"- {i}" for i in input_list)
