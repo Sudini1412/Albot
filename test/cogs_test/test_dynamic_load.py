@@ -1,8 +1,9 @@
 import pytest
-from albot.cogs.dynamic_load import DynamicLoad
 
 from unittest.mock import call
 from unittest.mock import MagicMock
+
+from albot.cogs.dynamic_load import DynamicLoad
 
 # fixtures
 
