@@ -38,6 +38,7 @@ class DynamicLoad(commands.Cog):
                 self.logging.error(f"{cog_name} failed to reload: raised exception: {e}")
                 return False
             else:
+                self.logging.info(f"Reloaded {cog_name}")
                 return True
 
         else:
@@ -51,7 +52,7 @@ class DynamicLoad(commands.Cog):
 
     def _fmt_cog_list(self, input_list: list) -> str:
         ret = "\n".join(f"- {i}" for i in input_list)
-        return f"`{ret}`"
+        return f"```\n{ret}\n```"
 
     @commands.command(name='dloader')
     async def entry(self, context, cog_name: str):
