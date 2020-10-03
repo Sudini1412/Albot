@@ -23,7 +23,7 @@ class DynamicLoad(commands.Cog):
             try:
                 self.bot.reload_extension(cog)
             except Exception as e:
-                 self.logging.error(f"{cog} failed to reload: raised exception: {e}")
+                self.logging.error(f"{cog} failed to reload: raised exception: {e}")
             else:
                 _reloaded.append(cog)
         return _reloaded
@@ -35,8 +35,8 @@ class DynamicLoad(commands.Cog):
             try:
                 self.bot.reload_extension(cog_name)
             except Exception as e:
-                 self.logging.error(f"{cog_name} failed to reload: raised exception: {e}")
-                 return False
+                self.logging.error(f"{cog_name} failed to reload: raised exception: {e}")
+                return False
             else:
                 return True
 
@@ -44,8 +44,8 @@ class DynamicLoad(commands.Cog):
             try:
                 self.bot.load_extension(cog_name)
             except Exception as e:
-                 self.logging.error(f"{cog_name} failed to reload: raised exception: {e}")
-                 return False
+                self.logging.error(f"{cog_name} failed to reload: raised exception: {e}")
+                return False
             else:
                 return True
 
