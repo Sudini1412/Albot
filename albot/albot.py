@@ -31,7 +31,7 @@ class Albot(commands.Bot):
         await self.change_presence(
             activity=discord.Activity(
                 type=discord.ActivityType.watching,
-                name="you."
+                name="you. \U0001F441\U0001F444\U0001F441" 
             )
         )
 
