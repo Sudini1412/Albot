@@ -33,12 +33,24 @@ class Weeb(commands.Cog):
             elif which == "manga":
                 self.add_manga(name)
                 await context.send(f"Added manga `{name}`")
-
+                
             else:
                 await context.send(f"Unknown type `{which}`")
 
+        elif len(args) >= 1:
+
+                if which =="get_anime":
+                    await context.send(f"Anime list: `{str(self._anime_list)}`")
+
+                elif which =="get_manga":
+                    await context.send(f"Manga list: `{str(self._manga_list)}`")
+
+                else:
+                    await context.send(f"Unknown type `{which}`")
+
         else:
             await context.send(f"Bad number of arguments.")
+
 
 def setup(bot):
     bot.add_cog(
