@@ -22,34 +22,35 @@ class Weeb(commands.Cog):
     @commands.command(name='weeb')
     async def entry(self, context, *args):
 
-        if len(args) >= 2:
+        if args:
             which = args[0]
-            name = " ".join(args[1:])
 
-            if which == "anime":
-                self.add_anime(name)
-                await context.send(f"Added anime `{name}`")
+            if len(args) >= 2:
+                name = " ".join(args[1:])
 
-            elif which == "manga":
-                self.add_manga(name)
-                await context.send(f"Added manga `{name}`")
-                
+                if which == "anime":
+                    self.add_anime(name)
+                    await context.send(f"Added anime `{name}`")
+
+                elif which == "manga":
+                    self.add_manga(name)
+                    await context.send(f"Added manga `{name}`")
+                    
+                else:
+                    await context.send(f"Unknown type `{which}` to add anime/manga to.")
+
             else:
-                await context.send(f"Unknown type `{which}`")
-
-        elif len(args) >= 1:
-
-                if which =="get_anime":
+                if which == "get_anime":
                     await context.send(f"Anime list: `{str(self._anime_list)}`")
 
-                elif which =="get_manga":
+                elif which == "get_manga":
                     await context.send(f"Manga list: `{str(self._manga_list)}`")
 
                 else:
                     await context.send(f"Unknown type `{which}`")
 
         else:
-            await context.send(f"Bad number of arguments.")
+            await context.send(COG_HELP)
 
 
 def setup(bot):

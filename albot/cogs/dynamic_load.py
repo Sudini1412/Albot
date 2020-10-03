@@ -36,19 +36,20 @@ class DynamicLoad(commands.Cog):
                 self.bot.reload_extension(cog_name)
             except Exception as e:
                 self.logging.error(f"{cog_name} failed to reload: raised exception: {e}")
-                return False
+                return f"`{cog_name}` raised exception: ```\n{e}\n```"
             else:
                 self.logging.info(f"Reloaded {cog_name}")
-                return True
+                return f"Reloaded `{cog_name}`"
 
         else:
             try:
                 self.bot.load_extension(cog_name)
             except Exception as e:
-                self.logging.error(f"{cog_name} failed to reload: raised exception: {e}")
-                return False
+                self.logging.error(f"{cog_name} failed to load: raised exception: {e}")
+                return f"No such cog: `{cog_name}`"
             else:
-                return True
+                self.logging.info(f"Loaded {cog_name}")
+                return f"Loaded new cof `{cog_name}`"
 
     def _fmt_cog_list(self, input_list: list) -> str:
         ret = "\n".join(f"- {i}" for i in input_list)
@@ -74,10 +75,8 @@ class DynamicLoad(commands.Cog):
             await context.send("Cannot act on self-cog.")
 
         else:
-            if self._reload_cog(cog_name):
-                await context.send(f"Succesfully (re)loaded {cog_name}.")
-            else:
-                await context.send(f"No such cog `{cog_name}`.")
+            resp = self._reload_cog(cog_name)
+            await context.send(resp)
             
 
     async def cog_command_error(self, context, error):
