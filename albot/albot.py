@@ -6,6 +6,7 @@ from discord.ext import commands
 
 import cogs
 
+
 class Albot(commands.Bot):
 
     def __init__(self):

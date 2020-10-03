@@ -39,6 +39,7 @@ class DynamicLoad(commands.Cog):
                  return False
             else:
                 return True
+
         else:
             try:
                 self.bot.load_extension(cog_name)
@@ -49,9 +50,7 @@ class DynamicLoad(commands.Cog):
                 return True
 
     def _fmt_cog_list(self, input_list: list) -> str:
-        ret = ""
-        for i in input_list:
-            ret += f"- {i}\n"
+        ret = "\n".join(f"- {i}" for i in input_list)
         return f"`{ret}`"
 
     @commands.command(name='dloader')
