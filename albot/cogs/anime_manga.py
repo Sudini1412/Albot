@@ -11,9 +11,10 @@ class Anime(commands.Cog):
         self.logging = logging.getLogger(__name__)
         
     @commands.command(name='anime')
-	async def entry(self, context, *args):
-    	await context.send(str(args))
+    async def entry(self, context, *args):
+        await context.send(str(args))
+
 def setup(bot):
     bot.add_cog(
-        SomeCog(bot)
+        Anime(bot)
     )

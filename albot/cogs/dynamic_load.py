@@ -74,7 +74,7 @@ class DynamicLoad(commands.Cog):
 
         else:
             if self._reload_cog(cog_name):
-                await contenxt.send(f"Succesfully (re)loaded {cog_name}.")
+                await context.send(f"Succesfully (re)loaded {cog_name}.")
             else:
                 await context.send(f"No such cog `{cog_name}`.")
             
