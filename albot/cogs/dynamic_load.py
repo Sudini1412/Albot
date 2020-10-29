@@ -7,7 +7,6 @@ COG_HELP = """TODO: help"""
 
 
 class DynamicLoad(commands.Cog):
-
     def __init__(self, bot):
         self.bot = bot
         self.logging = logging.getLogger(__name__)
@@ -35,7 +34,9 @@ class DynamicLoad(commands.Cog):
             try:
                 self.bot.reload_extension(cog_name)
             except Exception as e:
-                self.logging.error(f"{cog_name} failed to reload: raised exception: {e}")
+                self.logging.error(
+                    f"{cog_name} failed to reload: raised exception: {e}"
+                )
                 return f"`{cog_name}` raised exception: ```\n{e}\n```"
             else:
                 self.logging.info(f"Reloaded {cog_name}")
@@ -55,20 +56,16 @@ class DynamicLoad(commands.Cog):
         ret = "\n".join(f"- {i}" for i in input_list)
         return f"```\n{ret}\n```"
 
-    @commands.command(name='dloader')
+    @commands.command(name="dloader")
     async def entry(self, context, cog_name: str):
         self.logging.info(f"entry called with {cog_name}")
 
         if cog_name == "all":
-            reloaded = self._fmt_cog_list(
-                self._reload_all_cogs()
-            )
+            reloaded = self._fmt_cog_list(self._reload_all_cogs())
             await context.send(f"Reloaded\n{reloaded}")
 
         elif cog_name == "list":
-            resp = self._fmt_cog_list(
-                self.bot.extensions.keys()
-            )
+            resp = self._fmt_cog_list(self.bot.extensions.keys())
             await context.send(f"Cogs currently loaded:\n{resp}")
 
         elif cog_name == __name__:
@@ -77,7 +74,6 @@ class DynamicLoad(commands.Cog):
         else:
             resp = self._reload_cog(cog_name)
             await context.send(resp)
-            
 
     async def cog_command_error(self, context, error):
         if isinstance(error, commands.errors.MissingRequiredArgument):
@@ -85,7 +81,6 @@ class DynamicLoad(commands.Cog):
         else:
             raise error
 
+
 def setup(bot):
-    bot.add_cog(
-        DynamicLoad(bot)
-    )
+    bot.add_cog(DynamicLoad(bot))

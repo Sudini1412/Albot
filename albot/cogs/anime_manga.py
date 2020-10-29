@@ -5,6 +5,7 @@ from discord.ext import commands
 
 COG_HELP = """TODO"""
 
+
 class Weeb(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -18,8 +19,8 @@ class Weeb(commands.Cog):
 
     def add_manga(self, manga):
         self._manga_list.append(manga)
-        
-    @commands.command(name='weeb')
+
+    @commands.command(name="weeb")
     async def entry(self, context, *args):
 
         if args:
@@ -35,7 +36,7 @@ class Weeb(commands.Cog):
                 elif which == "manga":
                     self.add_manga(name)
                     await context.send(f"Added manga `{name}`")
-                    
+
                 else:
                     await context.send(f"Unknown type `{which}` to add anime/manga to.")
 
@@ -54,6 +55,4 @@ class Weeb(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(
-        Weeb(bot)
-    )
+    bot.add_cog(Weeb(bot))

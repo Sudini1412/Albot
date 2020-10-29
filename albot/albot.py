@@ -8,17 +8,15 @@ import cogs
 
 
 class Albot(commands.Bot):
-
     def __init__(self):
         super().__init__(
-            command_prefix=".albot ",
-            activity=discord.Game(name="Loading...")
+            command_prefix=".albot ", activity=discord.Game(name="Loading...")
         )
         self.logging = logging.getLogger(__name__)
 
     def load_all_available_cogs(self):
         self.logging.info("Loading cogs...")
-        for i in pkgutil.walk_packages(cogs.__path__, cogs.__name__ + '.'):
+        for i in pkgutil.walk_packages(cogs.__path__, cogs.__name__ + "."):
             name = i.name
             try:
                 self.load_extension(name)
@@ -31,7 +29,7 @@ class Albot(commands.Bot):
         await self.change_presence(
             activity=discord.Activity(
                 type=discord.ActivityType.watching,
-                name="you. \U0001F441\U0001F444\U0001F441" 
+                name="you. \U0001F441\U0001F444\U0001F441",
             )
         )
 
@@ -41,5 +39,3 @@ class Albot(commands.Bot):
             await context.send(error)
         else:
             raise error
-
-
