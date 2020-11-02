@@ -38,6 +38,7 @@ class Downloader(commands.Cog):
 
             for i in m.attachments:
                 yield i
+                await (m.add_reaction(CHECK))
 
     @commands.command(name="download")
     async def entry(self, context, *args):
@@ -52,10 +53,9 @@ class Downloader(commands.Cog):
                 self.logging.info(f"Downloading {i.filename}...")
 
                 await context.send(f"Downloading {i.filename}...")
-                await i.save(i.filename)
+                await i.save("mc2/"+i.filename)
 
                 # mark as done
-                await (m.add_reaction(CHECK))
                 await context.send(
                     f"{CHECK} Done {i.size}/{i.size} bytes.".format(i.filename)
                 )
@@ -64,7 +64,7 @@ class Downloader(commands.Cog):
 
 
 def setup(bot):
-    # bot.add_cog(
+    #bot.add_cog(
     #    Downloader(bot)
-    # )
+    #)
     pass
